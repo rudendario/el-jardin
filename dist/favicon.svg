@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="8" fill="#F6F1E8"/>
+  <!-- Leaf -->
+  <path d="M16 6 C10 8 7 15 9 22 C12 18 15 14 16 6Z" fill="#9CAF88" opacity="0.9"/>
+  <path d="M16 6 C22 8 25 15 23 22 C20 18 17 14 16 6Z" fill="#7E8F6A" opacity="0.7"/>
+  <!-- Stem -->
+  <line x1="16" y1="6" x2="16" y2="26" stroke="#C68A4F" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

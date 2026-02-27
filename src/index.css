@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-cream text-charcoal font-sans;
+    font-size: 16px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply font-serif;
+  }
+
+  *:focus-visible {
+    outline: 2px solid #c68a4f;
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background-color: rgba(156, 175, 136, 0.25);
+  }
+}
+
+@layer components {
+  .section-label {
+    @apply text-xs font-sans font-medium tracking-widest2 uppercase text-sage;
+  }
+
+  .section-title {
+    @apply font-serif text-4xl sm:text-5xl lg:text-6xl text-charcoal leading-tight;
+  }
+
+  .section-subtitle {
+    @apply font-sans text-base sm:text-lg text-charcoal-light leading-relaxed;
+  }
+
+  .card-base {
+    @apply bg-cream-light rounded-3xl border border-black/[0.06] shadow-card;
+  }
+
+  .divider {
+    @apply w-16 h-px bg-copper/40 my-6;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-botanical {
+    background-image: radial-gradient(
+        circle at 20% 80%,
+        rgba(156, 175, 136, 0.08) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 20%,
+        rgba(198, 138, 79, 0.06) 0%,
+        transparent 50%
+      );
+  }
+}
