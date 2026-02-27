@@ -69,7 +69,7 @@ export const menuData: MenuCategory[] = [
           'Madurado 21 días, a las brasas con mantequilla de hierbas aromáticas y sal de Maldon',
         price: '26,00 €',
         tag: 'Especialidad',
-        imageUrl: 'public/pictures/entrecot.jpg',
+        imageUrl: 'pictures/entrecot.jpg',
         ingredients: ['Ternera madurada 21 días', 'Brasas de encina', 'Mantequilla de hierbas aromáticas', 'Sal de Maldon'],
       },
       {
@@ -181,18 +181,18 @@ export const chefRecommendations = [
     id: 'r1',
     name: 'Entrecot de ternera madurado',
     note: 'El corte que define nuestra cocina',
-    imageUrl: 'public/pictures/entrecot.jpg',
+    imageUrl: 'pictures/entrecot.jpg',
   },
   {
     id: 'r2',
     name: 'Tabla de quesos artesanales',
     note: 'Para comenzar con calma y buen gusto',
-    imageUrl: 'public/pictures/quesos.jpg',
+    imageUrl: 'pictures/quesos.jpg',
   },
   {
     id: 'r3',
     name: 'Panna cotta de vainilla',
     note: 'El final perfecto para una tarde de jardín',
-    imageUrl: 'public/pictures/panna-cotta.jpg',
+    imageUrl: 'pictures/panna-cotta.jpg',
   },
 ]

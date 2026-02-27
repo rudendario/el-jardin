@@ -78,7 +78,7 @@ export const galleryItems = [
   { id: 'g1', label: 'Jardín exterior', aspect: 'aspect-[4/5]', gradient: 'from-sage/20 to-cream-deep', imageUrl: 'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=800&q=80&fit=crop' },
   { id: 'g2', label: 'Sala principal', aspect: 'aspect-square', gradient: 'from-cream-deep to-cream', imageUrl: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80&fit=crop' },
   { id: 'g3', label: 'Mesa de celebración', aspect: 'aspect-[4/3]', gradient: 'from-copper/15 to-cream-light', imageUrl: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&q=80&fit=crop' },
-  { id: 'g4', label: 'Rincón íntimo', aspect: 'aspect-[3/4]', gradient: 'from-cream to-sage/15', imageUrl: 'public/pictures/rincon-intimo.jpg' },
+  { id: 'g4', label: 'Rincón íntimo', aspect: 'aspect-[3/4]', gradient: 'from-cream to-sage/15', imageUrl: 'pictures/rincon-intimo.jpg' },
   { id: 'g5', label: 'Parrilla en acción', aspect: 'aspect-square', gradient: 'from-cream-deep to-copper/10', imageUrl: 'https://images.unsplash.com/photo-1477519242566-6ae87c31d212?w=800&q=80&fit=crop' },
   { id: 'g6', label: 'Detalle de mesa', aspect: 'aspect-[4/5]', gradient: 'from-sage/15 to-cream', imageUrl: 'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=800&q=80&fit=crop' },
   { id: 'g7', label: 'Terraza al atardecer', aspect: 'aspect-[4/3]', gradient: 'from-cream-light to-copper/15', imageUrl: 'https://images.unsplash.com/photo-1506354666786-959d6d497f1a?w=800&q=80&fit=crop' },

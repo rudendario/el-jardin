@@ -11,7 +11,7 @@ const specialties = [
     detail: 'Maduración lenta · Brasas de encina',
     gradient: 'from-[#EDE4D6] to-[#F6F1E8]',
     accentColor: 'bg-copper/10',
-    imageUrl: 'public/pictures/entrecot.jpg',
+    imageUrl: 'pictures/entrecot.jpg',
   },
   {
     id: 's2',
