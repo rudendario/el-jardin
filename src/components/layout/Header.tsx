@@ -50,7 +50,7 @@ export default function Header() {
                 className="relative h-16 w-16 sm:h-20 sm:w-20 rounded-full overflow-hidden "
               >
                 <img
-                  src="/public/logo-el-jardin.png"
+                  src="logo-el-jardin.png"
                   alt=""
                   className="w-full h-full object-cover "
                 />
