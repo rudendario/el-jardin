@@ -67,8 +67,8 @@ export default function ParrillaSection() {
           <Reveal delay={0.2}>
             <div className="divider mx-auto" />
             <p className="section-subtitle">
-              Brasas de encina, tiempo y producto de primera. Así se construye
-              nuestra carta de parrilla: con paciencia, respeto y sabor auténtico.
+              Carnes de primera, tiempo y dedicacion. Así se construye
+              nuestra carta de parrilla: con carbon vegetal, paciencia, respeto, y sabor auténtico.
             </p>
           </Reveal>
         </div>

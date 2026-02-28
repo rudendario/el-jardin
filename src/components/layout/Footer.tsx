@@ -35,10 +35,11 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <Link to="/" className="inline-block">
-              <p className="font-serif text-2xl text-charcoal">El Jardín</p>
-              <p className="text-xs font-sans tracking-widest uppercase text-charcoal-light mt-0.5">
-                Parrilla & Eventos
-              </p>
+              <img
+                src="/logo-el-jardin.png"
+                alt="El Jardín – Parrilla & Eventos"
+                className="h-40 w-auto"
+              />
             </Link>
             <p className="font-sans text-sm text-charcoal-light leading-relaxed max-w-xs">
               Un espacio luminoso donde cada comida se convierte en un momento
@@ -79,7 +80,7 @@ export default function Footer() {
               <p className="section-label mb-4">Horario</p>
               <div className="space-y-1 font-sans text-sm text-charcoal-light">
                 <p>L – J: 07:30 – 16:00 / <span className="text-copper font-medium pt-1">Tardes: cerrado</span></p>
-                <p>V - D: 07:00 – 16:00 / 20:00 – 23:00</p>
+                <p>V - D: 07:30 – 16:00 / 20:00 – 23:00</p>
                {/*
                 <p className="text-copper font-medium pt-1">Lunes: cerrado</p>
                 */}

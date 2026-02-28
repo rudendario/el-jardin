@@ -4,7 +4,7 @@ import Button from '../ui/Button'
 
 const schedule = [
   { days: 'Lunes – Jueves', hours: '07:30 – 16:00 ' },
-  { days: 'Viernes & Domingo',hours: '07:30 – 16:00 · 20:00 – 23:00' },
+  { days: 'Viernes - Domingo',hours: '07:30 – 16:00 · 20:00 – 23:00' },
   { days: 'Tardes entre semana', hours: 'Cerrado' },
 ]
 

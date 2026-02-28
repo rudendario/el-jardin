@@ -136,7 +136,7 @@ export default function Hero() {
           animate="visible"
           custom={0}
         >
-          Hontoria, Segovia · Parrilla & Eventos
+          Parrilla & Eventos
         </motion.p>
 
         <motion.h1

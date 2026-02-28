@@ -3,18 +3,21 @@ import { AnimatePresence } from 'framer-motion'
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 import PageTransition from './components/layout/PageTransition'
+import ScrollToTop from './components/layout/ScrollToTop'
 import Home from './pages/Home'
 import Carta from './pages/Carta'
 import Eventos from './pages/Eventos'
 import Contacto from './pages/Contacto'
+import NotFound from './pages/NotFound'
 
 function App() {
   const location = useLocation()
 
   return (
     <div className="min-h-screen bg-cream">
+      <ScrollToTop />
       <Header />
-      <main>
+      <main className="min-h-screen">
         <AnimatePresence mode="wait" initial={false}>
           <Routes location={location} key={location.pathname}>
             <Route
@@ -46,6 +49,14 @@ function App() {
               element={
                 <PageTransition>
                   <Contacto />
+                </PageTransition>
+              }
+            />
+            <Route
+              path="*"
+              element={
+                <PageTransition>
+                  <NotFound />
                 </PageTransition>
               }
             />

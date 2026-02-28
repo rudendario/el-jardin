@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import Container from '../components/ui/Container'
 import Reveal from '../components/ui/Reveal'
@@ -21,7 +22,7 @@ function DishModal({
   onClose: () => void
 }) {
   if (!item) return null
-  return (
+  return createPortal(
     <AnimatePresence>
       <motion.div
         className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8"
@@ -41,7 +42,7 @@ function DishModal({
         >
           {/* Photo */}
           {item.imageUrl ? (
-            <div className="h-56 overflow-hidden">
+            <div className="h-56 overflow-hidden ">
               <img
                 src={item.imageUrl}
                 alt={item.name}
@@ -98,7 +99,8 @@ function DishModal({
           </button>
         </motion.div>
       </motion.div>
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   )
 }
 
