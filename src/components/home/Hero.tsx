@@ -157,8 +157,8 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           custom={2}
-        >
-          Experiencia gastronómica · Parrilla de autor · Espacios para eventos
+        >     
+          Experiencia gastronómica · Entorno acogedor · Espacios ideal para eventos
         </motion.p>
 
         {/* Thin divider */}

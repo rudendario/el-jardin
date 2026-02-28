@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 import Container from '../ui/Container'
@@ -24,20 +24,29 @@ function Stars({ count }: { count: number }) {
   )
 }
 
+const AUTOPLAY_DELAY = 5000
+
 export default function Testimonials() {
   const [current, setCurrent] = useState(0)
   const [direction, setDirection] = useState(1)
+  const [paused, setPaused] = useState(false)
   const reduced = useReducedMotion()
 
   const total = testimonials.length
 
-  const goTo = (index: number, dir: number) => {
+  const goTo = useCallback((index: number, dir: number) => {
     setDirection(dir)
     setCurrent(index)
-  }
+  }, [])
 
   const prev = () => goTo((current - 1 + total) % total, -1)
-  const next = () => goTo((current + 1) % total, 1)
+  const next = useCallback(() => goTo((current + 1) % total, 1), [current, total, goTo])
+
+  useEffect(() => {
+    if (paused || reduced) return
+    const id = setTimeout(() => next(), AUTOPLAY_DELAY)
+    return () => clearTimeout(id)
+  }, [current, paused, reduced, next])
 
   const variants = {
     enter: (d: number) => ({
@@ -73,7 +82,11 @@ export default function Testimonials() {
         </div>
 
         {/* Slider */}
-        <div className="relative">
+        <div
+          className="relative"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={t.id}
