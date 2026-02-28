@@ -60,7 +60,7 @@ export const menuData: MenuCategory[] = [
           'Selección de quesos locales con mermelada de higo, membrillo y pan de nuez tostado',
         price: '14,50 €',
         tag: 'Recomendado',
-        imageUrl: 'public/pictures/quesos.jpg',
+        imageUrl: 'pictures/quesos.jpg',
         ingredients: ['Quesos locales de temporada', 'Mermelada de higo casera', 'Membrillo artesanal', 'Pan de nuez tostado'],
         allergens: ['lacteos', 'gluten', 'frutosSec'],
       },
