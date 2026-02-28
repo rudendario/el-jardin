@@ -31,17 +31,17 @@ export default function Footer() {
       <Container className="py-10 md:py-16">
 
         {/* Mobile layout */}
-        <div className="md:hidden space-y-6">
+        <div className="md:hidden space-y-3 space-x-0 px-8">
 
           {/* Fila 1: logo+socials izquierda | menú derecha */}
-          <div className="flex justify-between items-start">
+          <div className="flex justify-between items-center px-16">
             {/* Logo + socials */}
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 ">
               <Link to="/">
                 <img
                   src="/logo-el-jardin.png"
                   alt="El Jardín – Parrilla & Eventos"
-                  className="h-20 w-auto"
+                  className="h-28 w-auto"
                 />
               </Link>
               <div className="flex gap-2">
