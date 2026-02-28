@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Container from "../components/ui/Container";
 import Reveal from "../components/ui/Reveal";
@@ -14,12 +14,22 @@ interface FormState {
   date: string;
   guests: string;
   type: FormType;
+  eventType: string;
   message: string;
 }
 
 interface Errors {
   [key: string]: string;
 }
+
+const eventTypes = [
+  "Cumpleaños & Aniversario",
+  "Celebración familiar",
+  "Boda íntima",
+  "Comunión / Bautizo",
+  "Evento corporativo",
+  "Otro",
+];
 
 const initialForm: FormState = {
   name: "",
@@ -28,6 +38,7 @@ const initialForm: FormState = {
   date: "",
   guests: "",
   type: "mesa",
+  eventType: "",
   message: "",
 };
 
@@ -43,7 +54,93 @@ function validate(form: FormState): Errors {
   if (!form.date) errors.date = "Selecciona una fecha";
   if (!form.guests || parseInt(form.guests) < 1)
     errors.guests = "Indica el número de personas";
+  if (form.type === "evento" && !form.eventType)
+    errors.eventType = "Indica el tipo de evento";
   return errors;
+}
+
+function CustomSelect({
+  value,
+  onChange,
+  options,
+  placeholder,
+  hasError,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  options: string[];
+  placeholder: string;
+  hasError: boolean;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const borderClass = hasError ? "border-red-400" : open ? "border-copper" : "border-black/10";
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className={`w-full px-4 py-3 rounded-2xl border ${borderClass} bg-cream-light font-sans text-sm text-left transition-colors duration-300 flex items-center justify-between gap-2 focus:outline-none`}
+      >
+        <span className={value ? "text-charcoal" : "text-charcoal-light/50"}>
+          {value || placeholder}
+        </span>
+        <motion.span
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+          className="flex-shrink-0"
+        >
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 5l4 4 4-4" stroke="#C68A4F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </motion.span>
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.ul
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            className="absolute z-20 mt-2 w-full rounded-2xl border border-black/[0.08] bg-cream-light shadow-hover overflow-hidden"
+            role="listbox"
+          >
+            {options.map((opt) => (
+              <li
+                key={opt}
+                role="option"
+                aria-selected={opt === value}
+                onClick={() => { onChange(opt); setOpen(false); }}
+                className={`px-4 py-3 font-sans text-sm cursor-pointer transition-colors duration-150 flex items-center justify-between
+                  ${opt === value
+                    ? "text-copper bg-copper/5"
+                    : "text-charcoal-light hover:text-charcoal hover:bg-black/[0.03]"
+                  }`}
+              >
+                {opt}
+                {opt === value && (
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M2.5 7l3.5 3.5 5.5-6" stroke="#C68A4F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                )}
+              </li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 }
 
 function FieldError({ message }: { message?: string }) {
@@ -118,6 +215,7 @@ export default function Contacto() {
       const message = encodeURIComponent(
         `*Nueva solicitud – El Jardín*\n\n` +
           `Tipo: ${tipoLabel}\n` +
+          (form.type === "evento" && form.eventType ? `Evento: ${form.eventType}\n` : "") +
           `Nombre: ${form.name}\n` +
           `Email: ${form.email}\n` +
           `Teléfono: ${form.phone}\n` +
@@ -256,6 +354,29 @@ export default function Contacto() {
                           ))}
                         </div>
                       </div>
+
+                      {/* Event type selector */}
+                      <AnimatePresence>
+                        {form.type === "evento" && (
+                          <motion.div
+                            key="eventType"
+                            initial={{ opacity: 0, y: -6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -6 }}
+                            transition={{ duration: 0.25, ease: "easeOut" }}
+                          >
+                            <InputField label="Tipo de evento" error={errors.eventType}>
+                              <CustomSelect
+                                value={form.eventType}
+                                onChange={(v) => update("eventType", v)}
+                                options={eventTypes}
+                                placeholder="Selecciona una opción"
+                                hasError={!!errors.eventType}
+                              />
+                            </InputField>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
 
                       {/* Name + Phone */}
                       <div className="grid sm:grid-cols-2 gap-5">

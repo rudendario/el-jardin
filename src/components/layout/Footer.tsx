@@ -31,60 +31,74 @@ export default function Footer() {
       <Container className="py-10 md:py-16">
 
         {/* Mobile layout */}
-        <div className="md:hidden space-y-3 space-x-0 px-8">
+        <div className="md:hidden flex flex-col items-center text-center gap-8">
 
-          {/* Fila 1: logo+socials izquierda | menú derecha */}
-          <div className="flex justify-between items-center px-16">
-            {/* Logo + socials */}
-            <div className="flex flex-col gap-3 ">
-              <Link to="/">
-                <img
-                  src="/logo-el-jardin.png"
-                  alt="El Jardín – Parrilla & Eventos"
-                  className="h-28 w-auto"
-                />
-              </Link>
-              <div className="flex gap-2">
-                {socials.map(({ label, href, icon }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    aria-label={label}
-                    className="w-8 h-8 rounded-full border border-black/10 flex items-center justify-center text-xs font-sans font-medium text-charcoal-light hover:border-copper hover:text-copper transition-all duration-300"
-                  >
-                    {icon}
-                  </a>
-                ))}
-              </div>
-            </div>
+          {/* Logo */}
+          <Link to="/">
+            <img
+              src="/logo-el-jardin.png"
+              alt="El Jardín – Parrilla & Eventos"
+              className="h-28 w-auto"
+            />
+          </Link>
 
-            {/* Nav alineado a la derecha */}
-            <div className="text-right">
-              <p className="section-label mb-3">Menú</p>
-              <nav className="flex flex-col gap-2 items-end">
-                {navLinks.map(({ to, label }) => (
-                  <Link
-                    key={to}
-                    to={to}
-                    className="font-sans text-sm text-charcoal-light hover:text-copper transition-colors duration-300"
-                  >
-                    {label}
-                  </Link>
-                ))}
-              </nav>
-            </div>
+          {/* Socials */}
+          <div className="flex gap-3">
+            {socials.map(({ label, href, icon }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                className="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-xs font-sans font-medium text-charcoal-light hover:border-copper hover:text-copper transition-all duration-300"
+              >
+                {icon}
+              </a>
+            ))}
           </div>
 
-          {/* Fila 2: contacto centrado */}
-          <div className="text-center border-t border-black/[0.06] pt-5">
-            <p className="section-label mb-2">Contacto</p>
-            <div className="space-y-0.5 font-sans text-sm text-charcoal-light">
-              <p>C. las Huertas, 40 – Hontoria, Segovia</p>
-              <a href="tel:+34611486020" className="block hover:text-copper transition-colors duration-300">
-                +34 611 486 020
-              </a>
-              <a href="mailto:reservas@eljardinsegovia.com" className="block hover:text-copper transition-colors duration-300">
+          {/* Divider */}
+          <div className="w-12 h-px bg-black/[0.08]" />
+
+          {/* Nav */}
+          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-3">
+            {navLinks.map(({ to, label }) => (
+              <Link
+                key={to}
+                to={to}
+                className="font-sans text-sm text-charcoal-light hover:text-copper transition-colors duration-300"
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Divider */}
+          <div className="w-12 h-px bg-black/[0.08]" />
+
+          {/* Contact */}
+          <div className="space-y-3 font-sans text-sm text-charcoal-light">
+            <div className="flex items-center justify-center gap-2">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M7 1a4 4 0 0 0-4 4c0 3 4 8 4 8s4-5 4-8a4 4 0 0 0-4-4Z" stroke="#9CAF88" strokeWidth="1.2"/>
+                <circle cx="7" cy="5" r="1.5" fill="#C68A4F" opacity="0.6"/>
+              </svg>
+              <span>C. las Huertas, 40 – Hontoria, Segovia</span>
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2 3h10a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" stroke="#9CAF88" strokeWidth="1.2"/>
+                <path d="M1 4l6 4 6-4" stroke="#C68A4F" strokeWidth="1.2" strokeLinecap="round"/>
+              </svg>
+              <a href="mailto:reservas@eljardinsegovia.com" className="hover:text-copper transition-colors duration-300">
                 reservas@eljardinsegovia.com
+              </a>
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2.5 2h2l1 3-1.5 1.5a8 8 0 0 0 3.5 3.5L9 8.5l3 1v2A1 1 0 0 1 11 12.5C5.5 12 2 6.5 2.5 2Z" stroke="#9CAF88" strokeWidth="1.2" strokeLinecap="round"/>
+              </svg>
+              <a href="tel:+34611486020" className="hover:text-copper transition-colors duration-300">
+                +34 611 486 020
               </a>
             </div>
           </div>
@@ -99,7 +113,7 @@ export default function Footer() {
               <img
                 src="/logo-el-jardin.png"
                 alt="El Jardín – Parrilla & Eventos"
-                className="h-40 w-auto"
+                className="h-48 w-auto"
               />
             </Link>
             <p className="font-sans text-sm text-charcoal-light leading-relaxed max-w-xs">

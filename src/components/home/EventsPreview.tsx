@@ -7,7 +7,7 @@ const eventCards = [
     id: 'cumpleanos',
     title: 'Cumpleaños & Aniversarios',
     description:
-      'Los momentos más especiales merecen un escenario excepcional. Menús personalizados, decoración floral y una atención que cuida cada detalle.',
+      'Menús personalizados, decoración floral y atención exclusiva.',
     detail: 'Hasta 80 personas',
     bg: 'bg-gradient-to-br from-cream-deep to-cream-light',
     imageUrl: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&q=80&fit=crop',
@@ -16,7 +16,7 @@ const eventCards = [
     id: 'celebraciones',
     title: 'Celebraciones Familiares',
     description:
-      'Bodas íntimas, comuniones, bautizos. Un entorno cálido y elegante donde las familias crean recuerdos que duran toda la vida.',
+      'Bodas íntimas, comuniones y bautizos en un entorno cálido y elegante.',
     detail: 'Hasta 120 personas',
     bg: 'bg-gradient-to-br from-sage/10 to-cream-light',
     imageUrl: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80&fit=crop',
@@ -25,7 +25,7 @@ const eventCards = [
     id: 'empresa',
     title: 'Eventos Corporativos',
     description:
-      'Cenas de equipo, presentaciones, reuniones de dirección. Elegancia y funcionalidad al servicio de cada proyecto empresarial.',
+      'Cenas de equipo y reuniones de dirección con elegancia y funcionalidad.',
     detail: 'Hasta 150 personas',
     bg: 'bg-gradient-to-br from-copper/8 to-cream-light',
     imageUrl: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80&fit=crop',
@@ -52,13 +52,6 @@ export default function EventsPreview() {
               </h2>
             </Reveal>
           </div>
-          <Reveal delay={0.2} direction="left">
-            <p className="section-subtitle">
-              Cada evento es único. Trabajamos contigo desde el primer momento
-              para que el resultado supere tus expectativas. Espacios privados,
-              menús personalizados y un equipo dedicado en exclusiva.
-            </p>
-          </Reveal>
         </div>
 
         {/* Cards */}

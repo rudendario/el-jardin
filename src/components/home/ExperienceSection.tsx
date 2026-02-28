@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useReducedMotion } from "../../hooks/useReducedMotion";
 import Reveal from "../ui/Reveal";
 import Container from "../ui/Container";
 
@@ -27,7 +30,7 @@ const pillars = [
       </svg>
     ),
     title: "Un espacio vivo",
-    text: "El jardín es nuestro escenario: luz natural, vegetación abundante y una atmósfera serena donde el tiempo se detiene.",
+    text: "Luz natural, vegetación abundante y una atmósfera serena donde el tiempo se detiene.",
   },
   {
     id: "cocina",
@@ -49,7 +52,7 @@ const pillars = [
       </svg>
     ),
     title: "Cocina honesta",
-    text: "Producto de temporada, cocina con carácter y elaboraciones que respetan el sabor. Sin artificios, con mucho cuidado.",
+    text: "Producto de temporada y sabor auténtico. Sin artificios, con mucho cuidado.",
   },
   {
     id: "momentos",
@@ -71,11 +74,30 @@ const pillars = [
       </svg>
     ),
     title: "Momentos que perduran",
-    text: "Desde una comida íntima hasta un evento para ciento cincuenta personas. Nos adaptamos para que cada ocasión sea perfecta.",
+    text: "Desde una comida íntima hasta un evento para 150 personas. Nos adaptamos.",
   },
 ];
 
 export default function ExperienceSection() {
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const reduced = useReducedMotion();
+
+  const total = pillars.length;
+
+  const goTo = (index: number, dir: number) => {
+    setDirection(dir);
+    setCurrent(index);
+  };
+
+  const slideVariants = {
+    enter: (d: number) => ({ opacity: 0, x: reduced ? 0 : d * 60 }),
+    center: { opacity: 1, x: 0 },
+    exit: (d: number) => ({ opacity: 0, x: reduced ? 0 : d * -60 }),
+  };
+
+  const pillar = pillars[current];
+
   return (
     <section className="py-24 sm:py-32 bg-cream" aria-label="La experiencia">
       <Container>
@@ -94,38 +116,92 @@ export default function ExperienceSection() {
             <Reveal delay={0.2}>
               <div className="divider" />
               <p className="section-subtitle max-w-md">
-                Es reunirse, es compartir, es crear vínculos en un entorno que
-                invita a quedarse un poco más.
-              </p>
-            </Reveal>
-            <Reveal delay={0.3}>
-              <p className="section-subtitle max-w-md mt-4">
-                Es cuidar cada detalle: desde el primer saludo hasta el café
-                final, una carta que cambia con las estaciones y una parrilla
-                encendida con mimo artesanal.
+                Reunirse, compartir y crear vínculos en un entorno que invita a quedarse.
               </p>
             </Reveal>
           </div>
 
           {/* Right: pillars */}
-          <div className="space-y-6">
-            {pillars.map((pillar, i) => (
-              <Reveal key={pillar.id} delay={0.1 + i * 0.12} direction="left">
-                <div className="flex gap-5 p-6 card-base group hover:shadow-hover transition-shadow duration-500">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-cream-deep flex items-center justify-center group-hover:bg-sage/10 transition-colors duration-300">
-                    {pillar.icon}
+          <div>
+            {/* Mobile: slider */}
+            <div className="lg:hidden">
+              <div className="overflow-hidden">
+                <AnimatePresence mode="wait" custom={direction}>
+                  <motion.div
+                    key={pillar.id}
+                    custom={direction}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: reduced ? 0.2 : 0.4, ease: "easeInOut" }}
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.1}
+                    onDragEnd={(_, info) => {
+                      if (info.offset.x < -50) goTo((current + 1) % total, 1);
+                      else if (info.offset.x > 50) goTo((current - 1 + total) % total, -1);
+                    }}
+                    className="flex gap-5 p-6 card-base cursor-grab active:cursor-grabbing select-none"
+                  >
+                    <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-cream-deep flex items-center justify-center">
+                      {pillar.icon}
+                    </div>
+                    <div>
+                      <h3 className="font-serif text-xl text-charcoal mb-1.5">
+                        {pillar.title}
+                      </h3>
+                      <p className="font-sans text-sm text-charcoal-light leading-relaxed">
+                        {pillar.text}
+                      </p>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* Dots */}
+              <div className="flex justify-center gap-2 mt-5" role="tablist" aria-label="Pillars">
+                {pillars.map((_, i) => (
+                  <button
+                    key={i}
+                    role="tab"
+                    aria-selected={i === current}
+                    aria-label={`Pilar ${i + 1}`}
+                    onClick={() => goTo(i, i > current ? 1 : -1)}
+                    className="transition-all duration-300 focus-visible:outline-2 focus-visible:outline-copper focus-visible:outline-offset-2"
+                  >
+                    <span
+                      className={`block rounded-full transition-all duration-300 ${
+                        i === current
+                          ? "w-6 h-2 bg-copper"
+                          : "w-2 h-2 bg-charcoal/20 hover:bg-copper/40"
+                      }`}
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Desktop: stack */}
+            <div className="hidden lg:block space-y-6">
+              {pillars.map((p, i) => (
+                <Reveal key={p.id} delay={0.1 + i * 0.12} direction="left">
+                  <div className="flex gap-5 p-6 card-base group hover:shadow-hover transition-shadow duration-500">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-cream-deep flex items-center justify-center group-hover:bg-sage/10 transition-colors duration-300">
+                      {p.icon}
+                    </div>
+                    <div>
+                      <h3 className="font-serif text-xl text-charcoal mb-1.5">
+                        {p.title}
+                      </h3>
+                      <p className="font-sans text-sm text-charcoal-light leading-relaxed">
+                        {p.text}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-serif text-xl text-charcoal mb-1.5">
-                      {pillar.title}
-                    </h3>
-                    <p className="font-sans text-sm text-charcoal-light leading-relaxed">
-                      {pillar.text}
-                    </p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </Container>

@@ -32,13 +32,12 @@ function DishCard({
       initial={{ opacity: 0, y: reduced ? 0 : 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: reduced ? 0 : index * 0.06, duration: 0.4, ease: 'easeOut' }}
-      className="group flex gap-4 p-5 card-base hover:shadow-hover transition-shadow duration-500"
+      className="group flex flex-col p-5 card-base hover:shadow-hover transition-shadow duration-500"
     >
-      {/* Contenido izquierdo */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Nombre + tag + precio */}
-        <div className="flex items-start justify-between gap-2 mb-1">
-          <div className="flex items-start gap-2 flex-wrap">
+        <div className="flex items-start justify-between gap-2 mb-3">
+          <div className="flex items-center gap-2 flex-wrap min-w-0">
             <h3 className="font-serif text-lg text-charcoal group-hover:text-copper transition-colors duration-300 leading-tight">
               {item.name}
             </h3>
@@ -49,62 +48,48 @@ function DishCard({
           </p>
         </div>
 
-        {/* Descripción */}
-        <p className="font-sans text-sm text-charcoal-light leading-relaxed">
-          {item.description}
-        </p>
+        {/* Alérgenos + ver más */}
+        <div className="mt-auto pt-3 flex items-center justify-between gap-4 border-t border-black/[0.05]">
+          {item.allergens && item.allergens.length > 0 ? (
+            <div>
+              <button
+                onClick={() => setShowAllergens((v) => !v)}
+                className="flex items-center gap-1.5 font-sans text-[11px] text-charcoal-light/70 hover:text-charcoal-light transition-colors duration-200"
+                aria-expanded={showAllergens}
+              >
+                <svg viewBox="0 0 16 16" className="w-3.5 h-3.5 fill-current flex-shrink-0" aria-hidden="true">
+                  <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm.75 10.5h-1.5v-5h1.5v5Zm0-6.5h-1.5V3.5h1.5V5Z"/>
+                </svg>
+                Alérgenos
+                <span className={`transition-transform duration-200 inline-block ${showAllergens ? 'rotate-180' : ''}`}>▾</span>
+              </button>
+              {showAllergens && (
+                <div className="flex flex-wrap gap-1.5 mt-2">
+                  {item.allergens.map((a) => (
+                    <span
+                      key={a}
+                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-charcoal/5 border border-black/10 font-sans text-[11px] text-charcoal-light"
+                    >
+                      <span className="hidden font-semibold text-charcoal/70">{ALLERGENS[a].code}</span>
+                      {ALLERGENS[a].label}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          ) : (
+            <span />
+          )}
 
-        {/* Alérgenos toggle */}
-        {item.allergens && item.allergens.length > 0 && (
-          <div className="mt-3">
-            <button
-              onClick={() => setShowAllergens((v) => !v)}
-              className="flex items-center gap-1.5 font-sans text-[11px] text-charcoal-light/70 hover:text-charcoal-light transition-colors duration-200"
-              aria-expanded={showAllergens}
-            >
-              <svg viewBox="0 0 16 16" className="w-3.5 h-3.5 fill-current flex-shrink-0" aria-hidden="true">
-                <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1Zm.75 10.5h-1.5v-5h1.5v5Zm0-6.5h-1.5V3.5h1.5V5Z"/>
-              </svg>
-              Alérgenos
-              <span className={`transition-transform duration-200 inline-block ${showAllergens ? 'rotate-180' : ''}`}>▾</span>
-            </button>
-            {showAllergens && (
-              <div className="flex flex-wrap gap-1.5 mt-2">
-                {item.allergens.map((a) => (
-                  <span
-                    key={a}
-                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-charcoal/5 border border-black/10 font-sans text-[11px] text-charcoal-light"
-                  >
-                    {/* Aplicado hiden hasta tener inonos */}
-                    <span className="hidden font-semibold text-charcoal/70">{ALLERGENS[a].code}</span>
-                    {ALLERGENS[a].label}
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
+          <button
+            onClick={() => onSelect(item)}
+            className="font-sans text-[11px] text-copper/70 hover:text-copper transition-colors duration-200 tracking-wide flex-shrink-0"
+            aria-label={`Ver más sobre ${item.name}`}
+          >
+            Ver más →
+          </button>
+        </div>
       </div>
-
-      {/* Foto + ingredientes (derecha) */}
-      {item.imageUrl && (
-        <button
-          onClick={() => onSelect(item)}
-          className="flex-shrink-0 flex flex-col items-center gap-1.5 group/img"
-          aria-label={`Ver foto e ingredientes de ${item.name}`}
-        >
-          <div className="w-20 h-20 rounded-xl overflow-hidden">
-            <img
-              src={item.imageUrl}
-              alt={item.name}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-110"
-            />
-          </div>
-          <span className="font-sans text-[10px] text-copper/70 group-hover/img:text-copper transition-colors duration-200 tracking-wide">
-            Ver Ingredientes →
-          </span>
-        </button>
-      )}
     </motion.article>
   )
 }

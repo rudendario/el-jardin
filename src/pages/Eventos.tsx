@@ -254,7 +254,7 @@ export default function Eventos() {
 
       {/* Sticky CTA banner */}
       <section className="py-16 bg-cream relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_80%_at_50%_50%,rgba(198,138,79,0.08)_0%,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_80%_at_50%_50%,rgba(198,138,79,0.08)_0%,transparent_70%)] pointer-events-none" />
         <Container size="sm">
           <Reveal>
             <div className="text-center">

@@ -7,7 +7,7 @@ const specialties = [
     id: 's1',
     name: 'Entrecot madurado',
     description:
-      'Ternera madurada 21 días, a las brasas, con mantequilla de hierbas y sal de Maldon.',
+      'Ternera 21 días, brasas de encina, sal de Maldon.',
     detail: 'Maduración lenta · Brasas de encina',
     gradient: 'from-[#EDE4D6] to-[#F6F1E8]',
     accentColor: 'bg-copper/10',
@@ -17,7 +17,7 @@ const specialties = [
     id: 's2',
     name: 'Secreto ibérico',
     description:
-      'Corte seleccionado de cerdo ibérico, cocción lenta en parrilla, con romero y limón.',
+      'Ibérico de bellota, parrilla lenta, romero y limón.',
     detail: 'Ibérico de bellota · Parrilla lenta',
     gradient: 'from-[#F6F1E8] to-[#FAF7F1]',
     accentColor: 'bg-sage/10',
@@ -27,7 +27,7 @@ const specialties = [
     id: 's3',
     name: 'Salmón de parrilla',
     description:
-      'Lomo fresco en costra de perejil y eneldo, acompañado de ensalada tibia de lentejas.',
+      'Costra de perejil y eneldo. Ensalada tibia de lentejas.',
     detail: 'Pesca sostenible · Del día',
     gradient: 'from-[#EDE4D6] to-[#FAF7F1]',
     accentColor: 'bg-copper/8',
@@ -37,7 +37,7 @@ const specialties = [
     id: 's4',
     name: 'Verduras de temporada',
     description:
-      'Selección del mercado cocinada a las brasas, con aceite de oliva virgen extra y flor de sal.',
+      'Del mercado, a las brasas, aceite virgen extra y flor de sal.',
     detail: 'Km 0 · Producto local',
     gradient: 'from-[#F1EDE4] to-[#FAF7F1]',
     accentColor: 'bg-sage/15',
@@ -66,10 +66,6 @@ export default function ParrillaSection() {
           </Reveal>
           <Reveal delay={0.2}>
             <div className="divider mx-auto" />
-            <p className="section-subtitle">
-              Carnes de primera, tiempo y dedicacion. Así se construye
-              nuestra carta de parrilla: con carbon vegetal, paciencia, respeto, y sabor auténtico.
-            </p>
           </Reveal>
         </div>
 
