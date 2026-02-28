@@ -4,6 +4,7 @@ import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 import PageTransition from './components/layout/PageTransition'
 import ScrollToTop from './components/layout/ScrollToTop'
+import WhatsAppButton from './components/ui/WhatsAppButton'
 import Home from './pages/Home'
 import Carta from './pages/Carta'
 import Eventos from './pages/Eventos'
@@ -64,6 +65,7 @@ function App() {
         </AnimatePresence>
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   )
 }
