@@ -1,3 +1,36 @@
+export type AllergenKey =
+  | 'gluten'
+  | 'lacteos'
+  | 'huevo'
+  | 'pescado'
+  | 'mariscos'
+  | 'frutosSec'
+  | 'cacahuetes'
+  | 'soja'
+  | 'apio'
+  | 'mostaza'
+  | 'sesamo'
+  | 'sulfitos'
+  | 'altramuces'
+  | 'moluscos'
+
+export const ALLERGENS: Record<AllergenKey, { label: string; code: string }> = {
+  gluten:     { label: 'Gluten',        code: 'G'  },
+  lacteos:    { label: 'Lácteos',       code: 'L'  },
+  huevo:      { label: 'Huevo',         code: 'H'  },
+  pescado:    { label: 'Pescado',       code: 'P'  },
+  mariscos:   { label: 'Crustáceos',    code: 'C'  },
+  frutosSec:  { label: 'Frutos secos',  code: 'FS' },
+  cacahuetes: { label: 'Cacahuetes',    code: 'Ca' },
+  soja:       { label: 'Soja',          code: 'S'  },
+  apio:       { label: 'Apio',          code: 'A'  },
+  mostaza:    { label: 'Mostaza',       code: 'Mo' },
+  sesamo:     { label: 'Sésamo',        code: 'Se' },
+  sulfitos:   { label: 'Sulfitos',      code: 'Su' },
+  altramuces: { label: 'Altramuces',    code: 'Al' },
+  moluscos:   { label: 'Moluscos',      code: 'Ml' },
+}
+
 export interface MenuItem {
   id: string
   name: string
@@ -6,6 +39,7 @@ export interface MenuItem {
   tag?: string
   imageUrl?: string
   ingredients?: string[]
+  allergens?: AllergenKey[]
 }
 
 export interface MenuCategory {
@@ -26,8 +60,9 @@ export const menuData: MenuCategory[] = [
           'Selección de quesos locales con mermelada de higo, membrillo y pan de nuez tostado',
         price: '14,50 €',
         tag: 'Recomendado',
-        imageUrl: 'https://images.unsplash.com/photo-1452195100486-9cc7a1b87be8?w=900&q=80&fit=crop',
+        imageUrl: 'public/pictures/quesos.jpg',
         ingredients: ['Quesos locales de temporada', 'Mermelada de higo casera', 'Membrillo artesanal', 'Pan de nuez tostado'],
+        allergens: ['lacteos', 'gluten', 'frutosSec'],
       },
       {
         id: 'e2',
@@ -37,6 +72,7 @@ export const menuData: MenuCategory[] = [
         price: '11,00 €',
         imageUrl: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=900&q=80&fit=crop',
         ingredients: ['Hojas tiernas de temporada', 'Frutas frescas de mercado', 'Mix de semillas', 'Miel de flor', 'Mostaza antigua'],
+        allergens: ['mostaza', 'sesamo'],
       },
       {
         id: 'e3',
@@ -46,6 +82,7 @@ export const menuData: MenuCategory[] = [
         price: '9,50 €',
         imageUrl: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&q=80&fit=crop',
         ingredients: ['Setas silvestres de temporada', 'Ajo', 'Tomillo fresco', 'Pan de masa madre', 'Rulo de cabra'],
+        allergens: ['gluten', 'lacteos'],
       },
       {
         id: 'e4',
@@ -55,6 +92,7 @@ export const menuData: MenuCategory[] = [
         price: '10,50 €',
         imageUrl: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=900&q=80&fit=crop',
         ingredients: ['Verduras de temporada (calabacín, berenjena, pimiento)', 'Aceite de albahaca', 'Parmesano curado', 'Flor de sal'],
+        allergens: ['lacteos'],
       },
     ],
   },
@@ -71,6 +109,7 @@ export const menuData: MenuCategory[] = [
         tag: 'Especialidad',
         imageUrl: 'pictures/entrecot.jpg',
         ingredients: ['Ternera madurada 21 días', 'Brasas de encina', 'Mantequilla de hierbas aromáticas', 'Sal de Maldon'],
+        allergens: ['lacteos'],
       },
       {
         id: 'p2',
@@ -80,6 +119,7 @@ export const menuData: MenuCategory[] = [
         price: '22,00 €',
         imageUrl: 'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=900&q=80&fit=crop',
         ingredients: ['Secreto ibérico de bellota', 'Romero fresco', 'Limón siciliano', 'Aceite de oliva virgen extra'],
+        allergens: ['sulfitos'],
       },
       {
         id: 'p3',
@@ -89,6 +129,7 @@ export const menuData: MenuCategory[] = [
         price: '20,00 €',
         imageUrl: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=900&q=80&fit=crop',
         ingredients: ['Salmón fresco de pesca sostenible', 'Perejil', 'Eneldo', 'Lentejas verdes', 'Vinagreta tibia'],
+        allergens: ['pescado', 'mostaza'],
       },
       {
         id: 'p4',
@@ -114,6 +155,7 @@ export const menuData: MenuCategory[] = [
         tag: 'Recomendado',
         imageUrl: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&q=80&fit=crop',
         ingredients: ['Nata fresca', 'Vainilla natural de Madagascar', 'Coulis de frutos rojos', 'Flor de lavanda seca'],
+        allergens: ['lacteos'],
       },
       {
         id: 'po2',
@@ -123,6 +165,7 @@ export const menuData: MenuCategory[] = [
         price: '8,00 €',
         imageUrl: 'https://images.unsplash.com/photo-1567171466814-4ede929b3dcc?w=900&q=80&fit=crop',
         ingredients: ['Queso fresco artesanal', 'Base de galleta', 'Huevos de corral', 'Mermelada de maracuyá'],
+        allergens: ['lacteos', 'gluten', 'huevo'],
       },
       {
         id: 'po3',
@@ -131,6 +174,7 @@ export const menuData: MenuCategory[] = [
         price: '6,00 €',
         imageUrl: 'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=900&q=80&fit=crop',
         ingredients: ['Elaboración propia diaria', 'Ingredientes de temporada', 'Sin colorantes ni conservantes'],
+        allergens: ['lacteos'],
       },
       {
         id: 'po4',
@@ -140,6 +184,7 @@ export const menuData: MenuCategory[] = [
         price: '7,50 €',
         imageUrl: 'https://images.unsplash.com/photo-1564355808539-22fda35bed7e?w=900&q=80&fit=crop',
         ingredients: ['Chocolate negro 70%', 'Mantequilla', 'Helado de coco artesanal', 'Almendra caramelizada'],
+        allergens: ['lacteos', 'huevo', 'gluten', 'frutosSec'],
       },
     ],
   },
@@ -152,6 +197,7 @@ export const menuData: MenuCategory[] = [
         name: 'Vino de la casa',
         description: 'Tinto, blanco o rosado, selección del sumiller',
         price: '4,50 € / copa',
+        allergens: ['sulfitos'],
       },
       {
         id: 'b2',
@@ -179,18 +225,21 @@ export const menuData: MenuCategory[] = [
 export const chefRecommendations = [
   {
     id: 'r1',
+    menuItemId: 'p1',
     name: 'Entrecot de ternera madurado',
     note: 'El corte que define nuestra cocina',
     imageUrl: 'pictures/entrecot.jpg',
   },
   {
     id: 'r2',
+    menuItemId: 'e1',
     name: 'Tabla de quesos artesanales',
     note: 'Para comenzar con calma y buen gusto',
     imageUrl: 'pictures/quesos.jpg',
   },
   {
     id: 'r3',
+    menuItemId: 'po1',
     name: 'Panna cotta de vainilla',
     note: 'El final perfecto para una tarde de jardín',
     imageUrl: 'pictures/panna-cotta.jpg',
